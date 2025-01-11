@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -59,21 +58,26 @@ class UserController extends Controller
     // Mettre à jour les informations d'un utilisateur
     public function update(Request $request, $id)
     {
-        // Trouver l'utilisateur par ID
-        $user = User::findOrFail($id);
-
-        // Valider les données de la requête
-        $validatedData = $request->validate([
+        // Validation des données
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id, // Exclure l'email de l'utilisateur actuel
+            'email' => 'required|email|unique:users,email,' . $id,
             'role' => 'required|string',
         ]);
-
-        // Mettre à jour l'utilisateur
-        $user->update($validatedData);
-
-        // Rediriger vers la page d'index avec un message de succès
-        return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès');
+    
+        // Récupérer l'utilisateur
+        $user = User::find($id);
+    
+        if ($user) {
+            // Mettre à jour les informations de l'utilisateur
+            $user->name = $validated['name'];
+            $user->email = $validated['email'];
+            $user->role = $validated['role'];
+            $user->save();
+            return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès.');
+        }
+    
+        return redirect()->route('users.index')->with('fail', 'Utilisateur non trouvé.');
     }
 
     // Supprimer un utilisateur
