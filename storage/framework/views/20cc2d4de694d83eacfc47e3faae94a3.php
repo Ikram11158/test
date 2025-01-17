@@ -146,9 +146,9 @@
             Formulaire de Séance
         </div>
         <div class="card-body">
-            <form action="{{ route('seances.store') }}" method="POST">
-                @csrf
-                <input type="hidden" name="idgroupe" class="form-control" value="{{$idgroupe}}">
+            <form action="<?php echo e(route('seances.store')); ?>" method="POST">
+                <?php echo csrf_field(); ?>
+                <input type="hidden" name="idgroupe" class="form-control" value="<?php echo e($idgroupe); ?>">
                 <div class="mb-3">
                     <label for="seance" class="form-label">Séance</label>
                     <input type="text" name="seance" class="form-control" required>
@@ -195,3 +195,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\Users\IKRAM\OneDrive\Bureau\projetphp3\cruud\cruud\resources\views/page1.blade.php ENDPATH**/ ?>

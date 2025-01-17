@@ -22,5 +22,15 @@ class Seance extends Model
         'date_seance',
         'module',
         'matiere',
+        'idgroupe',
     ];
+    public function module()
+{
+    return $this->belongsTo(Module::class);
+}
+
+public function groupe()
+{
+    return $this->belongsTo(Groupe::class);
+}
 }

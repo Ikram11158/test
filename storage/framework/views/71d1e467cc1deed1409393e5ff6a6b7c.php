@@ -113,6 +113,7 @@
             <div class="card-body">
                 <form action="<?php echo e(route('seances.store')); ?>" method="POST">
                     <?php echo csrf_field(); ?>
+                    <input type="hidden" name="idgroupe" class="form-control" value="<?php echo e($idgroupe); ?>">
                     <div class="mb-3">
                         <label for="seance" class="form-label">Séance</label>
                         <input type="text" name="seance" class="form-control" required>
@@ -154,4 +155,4 @@
 
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\cruud\cruud\resources\views/page1.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\fatimaezzahra\Desktop\crud\cruud\cruud\resources\views/page1.blade.php ENDPATH**/ ?>

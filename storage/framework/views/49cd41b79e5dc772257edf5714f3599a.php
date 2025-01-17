@@ -16,4 +16,4 @@
 
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\cruud\cruud\resources\views/welcome.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\Users\fatimaezzahra\Desktop\crud\cruud\cruud\resources\views/welcome.blade.php ENDPATH**/ ?>

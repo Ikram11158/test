@@ -29,7 +29,8 @@ class AuthController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->route('users.index'); 
             } elseif ($user->role === 'teacher') {
-                return redirect()->route('seances.showForm');
+                return redirect()->route('modulles.index');
+                //return redirect()->route('seances.showForm');
             }
 
             return redirect()->route('login')->withErrors('Rôle non autorisé');
