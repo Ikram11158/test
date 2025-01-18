@@ -124,6 +124,9 @@
     </style>
 </head>
 <body>
+
+@extends('layout.navbar')
+
 <button class="btn-back" id="btnBack">
         ←
     </button>

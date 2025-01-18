@@ -40,6 +40,9 @@ class AuthController extends Controller
         }
     }
 
+
+
+
     // Log out (facultatif, si vous voulez permettre à l'utilisateur de se déconnecter)
     public function logout()
     {

@@ -1,97 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cahier de Charges - Professeurs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #eef2f7;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .header {
-            background-color: #004080;
-            color: white0;
-            padding: 2rem 0;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        .card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: none;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-        .card-header {
-            background-color: #0056b3;
-            color: white;
-            font-weight: bold;
-        }
-        .card-body {
-            background-color: #ffffff;
-            color: #333;
-        }
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 4px;
-        }
-        .btn-custom:hover {
-            background-color: #0056b3;
-        }
-        footer {
-            background-color: #004080;
-            color: white;
-            padding: 1rem 0;
-            margin-top: 3rem;
-        }
-    </style>
-</head>
-<body>
-<div class="header text-center">
-        <h1>Cahier de Charges</h1>
-        <p>Plateforme de gestion des tâches et responsabilités des les professeurs</p>
-    </div>
+<?php $__env->startSection('title', 'Connexion'); ?>
+<?php $__env->startSection('content'); ?>
 
-    <!-- Container Section -->
-    <div class="container">
-        <!-- Gestion des Tâches Section -->
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">connexion</div>
-                    <div class="card-body">
-                        <?php if($errors->any()): ?>
-                            <div class="alert alert-danger">
-                                <ul>
-                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <li><?php echo e($error); ?></li>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </ul>
-                            </div>
-                        <?php endif; ?>
-
-                        <form action="<?php echo e(url('/login')); ?>" method="POST">
-                            <?php echo csrf_field(); ?>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Mot de Passe</label>
-                                <input type="password" name="password" class="form-control" id="password" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Se connecter</button>
-                        </form>
-                    </div>
+<div class="flex justify-center items-center m-40">
+    <div class="w-full max-w-md">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="bg-green-600 text-white text-center py-4 px-6">
+                <h2 class="text-lg font-semibold">Connexion</h2>
+            </div>
+            <div class="p-6">
+                <?php if($errors->any()): ?>
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                    <ul>
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
                 </div>
+                <?php endif; ?>
+
+                <form action="<?php echo e(url('/login')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                        <input type="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Mot de Passe</label>
+                        <input type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" required>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Se connecter</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</body>
-</html>
-<?php /**PATH /home/yassineamjad/ikramFromGit/resources/views/auth/login.blade.php ENDPATH**/ ?>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('base', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/yassineamjad/ikramFromGit/resources/views/auth/login.blade.php ENDPATH**/ ?>
