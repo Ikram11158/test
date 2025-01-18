@@ -6,6 +6,7 @@ use App\Models\Modulle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\groupess;
+
 class ModulleController extends Controller
 {
     // Afficher la liste des modules
@@ -30,23 +31,22 @@ class ModulleController extends Controller
 
         return redirect()->route('modulles.index')->with('success', 'Modulle créé avec succès!');
     }
-    function listeGroupe(  $modulleId ){
+    function listeGroupe($modulleId)
+    {; // Remplacez par l'ID réel du module
 
-      ; // Remplacez par l'ID réel du module
+        // Obtenez la liste des groupes d'un module spécifique
+        $modulle = DB::table('modulles')->where('id', $modulleId)->first();
 
-// Obtenez la liste des groupes d'un module spécifique
-$modulle = DB::table('modulles')->where('id', $modulleId)->first();
+        // Récupérer les groupes associés au module
+        $groupes = DB::table('groupess')
+            ->where('modulle_id', $modulleId)
+            ->get();
 
-// Récupérer les groupes associés au module
-$groupes = DB::table('groupess')
-    ->where('modulle_id', $modulleId)
-    ->get();
+        // Déboguer pour vérifier les données
+        // dd($modulle, $groupes);
 
-// Déboguer pour vérifier les données
-// dd($modulle, $groupes);
-
-// Passer les données à la vue
-return view('groupes.group', compact('modulle', 'groupes'));
+        // Passer les données à la vue
+        return view('groupes.group', compact('modulle', 'groupes'));
     }
     public function show($id)
     {

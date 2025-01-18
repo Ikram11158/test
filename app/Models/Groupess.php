@@ -10,6 +10,8 @@ class Groupess extends Model
 {
     use HasFactory;
 
+    protected $table = 'groupess';
+
     protected $fillable = [
         'nom',
         'modulle_id',  // Ajoutez cette colonne à la table pour la relation

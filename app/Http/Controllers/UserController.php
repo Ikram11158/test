@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Modulle;
+use App\Models\Groupess;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -10,7 +13,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
+        $modulles = Modulle::all();
+        $groupess = Groupess::all();
+
+        return view('users.index', [
+            'users' => $users,
+            'modulles' => $modulles,
+            'groupess' => $groupess
+        ]);
     }
 
     // Afficher le formulaire de création
@@ -29,7 +39,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'role' => 'required|string',
         ]);
-    
+
         // Création de l'utilisateur
         User::create([
             'name' => $validated['name'],
@@ -37,11 +47,11 @@ class UserController extends Controller
             'password' => bcrypt($validated['password']),
             'role' => $validated['role'],
         ]);
-    
+
         // Redirection avec un message de succès
         return redirect()->route('users.index')->with('success', 'Utilisateur ajouté avec succès!');
     }
-    
+
     // Afficher un utilisateur spécifique
     public function show(User $user)
     {
@@ -49,11 +59,12 @@ class UserController extends Controller
     }
 
     // Afficher le formulaire de modification
-    public function edit($id) {
+    public function edit($id)
+    {
         $user = User::findOrFail($id); // Récupère l'utilisateur avec l'ID
         return view('users.edit', compact('user')); // Passe l'utilisateur à la vue
     }
-    
+
 
     // Mettre à jour les informations d'un utilisateur
     public function update(Request $request, $id)
@@ -64,10 +75,10 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'role' => 'required|string',
         ]);
-    
+
         // Récupérer l'utilisateur
         $user = User::find($id);
-    
+
         if ($user) {
             // Mettre à jour les informations de l'utilisateur
             $user->name = $validated['name'];
@@ -76,7 +87,7 @@ class UserController extends Controller
             $user->save();
             return redirect()->route('users.index')->with('success', 'Utilisateur mis à jour avec succès.');
         }
-    
+
         return redirect()->route('users.index')->with('fail', 'Utilisateur non trouvé.');
     }
 
@@ -84,12 +95,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-    
+
         if ($user) {
             $user->delete();
             return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');
         }
-    
+
         return redirect()->route('users.index')->with('fail', 'Utilisateur non trouvé.');
     }
 }
